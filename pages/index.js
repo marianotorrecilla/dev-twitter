@@ -1,9 +1,24 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head'
-import Link from 'next/link'
 import AppLayout from '../components/AppLayout';
-//import styles from '../styles/Home.module.css'
+import Button from '../components/Button';
+import GitHub from '../components/Icons/GitHub';
+import { colors } from '../styles/theme';
+import {loginWithGitHub, onAuthStateChanged} from '../firebase/client'
 
 export default function Home() {
+  const [user, setUser] = useState(undefined)
+
+  useEffect(() => {
+    onAuthStateChanged(setUser)
+  }, [])
+
+  const handleClick = () => {
+    loginWithGitHub().then(setUser).catch(err => {
+      console.log(err);
+    })
+  }
+
   return (
     <div>
       
@@ -14,36 +29,58 @@ export default function Home() {
       </Head>
 
       <AppLayout>
-        <h1>
-          <a href="https://nextjs.org">dev-twitter</a>
-        </h1>
-        <nav>
-          <Link href="/timeline">
-            <a>timeline</a>
-          </Link>
-        </nav>
+        <section>
+          <h1>
+            dev-twitter
+          </h1>
+          <h2>Talk about development with developers</h2>
+          <div>
+            {
+              user === undefined && <Button onClick={handleClick}>
+                <GitHub fill={`${colors.white}`} width={24} height={24} />
+                Login with GitHub
+              </Button>
+            }
+            {
+              user && user.avatar && <div>
+                <img src={user.avatar} alt={user.avatar} />
+                <strong>{user.username}</strong>
+              </div>
+            }
+            
+          </div>
+        </section>
       </AppLayout>
 
       <style jsx>{`
+
+        section {
+          display: grid;
+          height: 100%;
+          place-content: center;
+          place-items: center;
+        }
+
+        img {
+          width: 120px;
+        }
+
+        div {
+          margin-top: 8px;
+        }
+
         h1 {
-          text-align: center;
-          font-size: 48px;
-        }
-
-        nav {
+          color: ${colors.primary};
           font-size: 24px;
-          text-align: center;
+          margin-bottom: 10px;
         }
 
-        .another-title {
-          color: #333;
-          font-size: 24px;
+        h2 {
+          color: ${colors.secondary};
+          font-size: 16px;
+          margin: 0;
         }
 
-        a {
-          color: #09f;
-          text-decoration: none;
-        }
       `}</style>
     </div>
   );
