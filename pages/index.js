@@ -42,10 +42,10 @@ export default function Home() {
               </Button>
             }
             {
-              user && user.avatar && <div>
+              user && user.avatar && <section>
                 <img src={user.avatar} alt={user.avatar} />
                 <strong>{user.username}</strong>
-              </div>
+              </section>
             }
             
           </div>
@@ -63,6 +63,7 @@ export default function Home() {
 
         img {
           width: 120px;
+          border-radius: 65px;
         }
 
         div {
