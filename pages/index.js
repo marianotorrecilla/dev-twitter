@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head'
 import AppLayout from 'components/AppLayout';
 import Button from 'components/Button';
 import GitHub from 'components/Icons/GitHub';
 import { colors } from 'styles/theme';
-import { loginWithGitHub, onAuthStateChanged } from 'firebase/client'
-import Avatar from 'components/Avatar';
+import { loginWithGitHub } from 'firebase/client'
+import { useRouter } from 'next/router';
+import useUser, { USER_STATES } from 'hooks/useUser';
 
 export default function Home() {
-  const [user, setUser] = useState(undefined)
+  const user = useUser()
+  const router = useRouter()
 
   useEffect(() => {
-    onAuthStateChanged(setUser)
-  }, [])
+    user && router.replace('/home')
+  }, [user])
 
   const handleClick = () => {
-    loginWithGitHub().then(setUser).catch(err => {
+    loginWithGitHub().catch(err => {
       console.log(err);
     })
   }
@@ -37,22 +39,14 @@ export default function Home() {
           <h2>Talk about development with developers</h2>
           <div>
             {
-              user === null && <Button onClick={handleClick}>
+              user === USER_STATES.NOT_LOGGED && <Button onClick={handleClick}>
                 <GitHub fill={`${colors.white}`} width={24} height={24} />
                 Login with GitHub
               </Button>
             }
             {
-              user && user.avatar && <div>
-                <Avatar 
-                  src={user.avatar} 
-                  alt={user.username} 
-                  text={user.username}
-                  withText
-                />
-              </div>
+              user === USER_STATES.NOT_KNOWN && <span>Loading...</span>
             }
-            
           </div>
         </section>
       </AppLayout>
@@ -90,3 +84,14 @@ export default function Home() {
     </div>
   );
 }
+
+/**
+ * && user.avatar && <div>
+                <Avatar 
+                  src={user.avatar} 
+                  alt={user.username} 
+                  text={user.username}
+                  withText
+                />
+              </div>
+ */
