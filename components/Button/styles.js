@@ -15,6 +15,11 @@ export default css`
         padding: 10px 24px;
     }
 
+    button[disabled] {
+        opacity: 0.2;
+        pointer-events: none;
+    }
+
     button > :global(svg) {
         margin-right: 8px
     }
