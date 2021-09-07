@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head'
-import AppLayout from '../components/AppLayout';
-import Button from '../components/Button';
-import GitHub from '../components/Icons/GitHub';
-import { colors } from '../styles/theme';
-import {loginWithGitHub, onAuthStateChanged} from '../firebase/client'
+import AppLayout from 'components/AppLayout';
+import Button from 'components/Button';
+import GitHub from 'components/Icons/GitHub';
+import { colors } from 'styles/theme';
+import { loginWithGitHub, onAuthStateChanged } from 'firebase/client'
+import Avatar from 'components/Avatar';
 
 export default function Home() {
   const [user, setUser] = useState(undefined)
@@ -36,16 +37,20 @@ export default function Home() {
           <h2>Talk about development with developers</h2>
           <div>
             {
-              user === undefined && <Button onClick={handleClick}>
+              user === null && <Button onClick={handleClick}>
                 <GitHub fill={`${colors.white}`} width={24} height={24} />
                 Login with GitHub
               </Button>
             }
             {
-              user && user.avatar && <section>
-                <img src={user.avatar} alt={user.avatar} />
-                <strong>{user.username}</strong>
-              </section>
+              user && user.avatar && <div>
+                <Avatar 
+                  src={user.avatar} 
+                  alt={user.username} 
+                  text={user.username}
+                  withText
+                />
+              </div>
             }
             
           </div>
@@ -63,7 +68,6 @@ export default function Home() {
 
         img {
           width: 120px;
-          border-radius: 65px;
         }
 
         div {
