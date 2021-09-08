@@ -16,6 +16,13 @@ export default css`
         margin: 0;
     }
 
+    img {
+        border-radius: 10px;
+        margin-top: 10px;
+        height: auto;
+        width: 100%;
+    }
+
     date {
         color: #555;
         font-size: 14px;
