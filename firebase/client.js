@@ -36,10 +36,11 @@ export const loginWithGitHub = () => {
     return firebase.auth().signInWithPopup(githubProvider)
 }
 
-export const addDevit = ({avatar, content, userId, userName}) => {
+export const addDevit = ({avatar, content, img, userId, userName}) => {
     return db.collection('dev-tweets').add({
         avatar,
         content,
+        img,
         userId,
         userName,
         createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
@@ -50,20 +51,25 @@ export const addDevit = ({avatar, content, userId, userName}) => {
 
 export const fetchLatestDevits = () => {
     return db.collection('dev-tweets')
+    .orderBy("createdAt", "desc")
         .get()
-        .then(snapshot => {
-            return snapshot.docs.map(doc => {
+        .then(({ docs }) => {
+            return docs.map(doc => {
                 const data = doc.data()
                 const id = doc.id
                 const {createdAt} = data
-                const date = new Date(createdAt.seconds * 1000)
-                const normalizedCreatedAt = new Intl.DateTimeFormat("es-AR").format(date)
-
+                
                 return {
                     ...data,
                     id,
-                    createdAt: normalizedCreatedAt
+                    createdAt: +createdAt.toDate(),
                 }
             })
         })
+}
+
+export const upLoadImage = (file) => {
+    const ref = firebase.storage().ref(`images/${file.name}`)
+    const task = ref.put(file)
+    return task
 }
