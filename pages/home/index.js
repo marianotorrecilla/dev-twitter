@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from 'next/link'
-import AppLayout from "components/AppLayout";
 import Devit from "components/Devit";
 import useUser from "hooks/useUser";
 import { fetchLatestDevits } from "firebase/client";
@@ -20,7 +19,6 @@ export default function HomePage () {
 
     return (
         <>
-            <AppLayout>
                 <Head>
                     <title>Dev-twitter | Inicio</title>
                 </Head>
@@ -60,7 +58,6 @@ export default function HomePage () {
                         </a>
                     </Link>
                 </nav>
-            </AppLayout>
             <style jsx>{`
 
                 header {

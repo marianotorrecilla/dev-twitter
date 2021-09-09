@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import Head from 'next/head'
-import AppLayout from 'components/AppLayout';
 import Button from 'components/Button';
 import GitHub from 'components/Icons/GitHub';
 import { colors } from 'styles/theme';
@@ -31,7 +30,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AppLayout>
         <section>
           <h1>
             dev-twitter
@@ -49,7 +47,6 @@ export default function Home() {
             }
           </div>
         </section>
-      </AppLayout>
 
       <style jsx>{`
 

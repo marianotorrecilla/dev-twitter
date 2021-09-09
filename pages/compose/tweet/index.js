@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import AppLayout from 'components/AppLayout';
 import Head from "next/head";
 import Button from 'components/Button';
 import useUser from 'hooks/useUser';
@@ -94,7 +93,6 @@ export default function ComposeTweet () {
 
     return (
         <>
-            <AppLayout>
                 <Head>
                     <title>Crear un dev-tweet</title>
                 </Head>
@@ -124,7 +122,7 @@ export default function ComposeTweet () {
                         </div>
                     </form>
                 </section>
-            </AppLayout>
+                
             <style jsx>{`
                 div {
                     padding: 15px;
