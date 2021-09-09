@@ -7,6 +7,11 @@ export default css`
         padding: 10px 15px;
     }
 
+    article:hover {
+        background: #f5f8fa;
+        cursor: pointer;
+    }
+
     div {
         padding-right: 10px;
     }
@@ -23,8 +28,12 @@ export default css`
         width: 100%;
     }
 
-    date {
+    time {
         color: #555;
         font-size: 14px;
+    }
+
+    time:hover {
+        text-decoration: underline;
     }
 `

@@ -1,13 +1,21 @@
 import Avatar from "components/Avatar";
+import Link from 'next/link'
 import styles from "./styles"
 import useTimeAgo from "hooks/useTimeAgo";
+import { useRouter } from "next/router";
 
 export default function Devit ({ avatar, userName, content, createdAt, id, img }) {
     const timeago = useTimeAgo(createdAt)
+    const router = useRouter()
+
+    const handleArticleClick = (e) => {
+        e.preventDefault()
+        router.push(`/status/${id}`)
+    }
 
     return (
         <>
-            <article>
+            <article onClick={handleArticleClick}>
                 <div>
                     <Avatar
                         alt={userName} 
@@ -19,7 +27,11 @@ export default function Devit ({ avatar, userName, content, createdAt, id, img }
                     <header>
                         <strong>{userName}</strong>
                         <span> - </span>
-                        <date>{timeago}</date>
+                        <Link href={`/status/${id}`}>
+                            <a>
+                                <time>{timeago}</time>
+                            </a>
+                        </Link>
                     </header>
                     <p>{content}</p>
                     {img && <img src={img} />}
