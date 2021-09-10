@@ -1,14 +1,6 @@
 import * as firebase from 'firebase'
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBPhbM8ZKMQbrAJC-CPloHK7EVRYHGVPMk",
-    authDomain: "dev-twitter-ae889.firebaseapp.com",
-    projectId: "dev-twitter-ae889",
-    storageBucket: "dev-twitter-ae889.appspot.com",
-    messagingSenderId: "626392770770",
-    appId: "1:626392770770:web:78b91ea49be1401309a50b",
-    measurementId: "G-HB6C4S9Q3R"
-}
+const firebaseConfig = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CONFIG)
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
@@ -49,22 +41,25 @@ export const addDevit = ({avatar, content, img, userId, userName}) => {
     })
 }
 
-export const fetchLatestDevits = () => {
-    return db.collection('dev-tweets')
-    .orderBy("createdAt", "desc")
-        .get()
-        .then(({ docs }) => {
-            return docs.map(doc => {
-                const data = doc.data()
-                const id = doc.id
-                const {createdAt} = data
+const mapDevitFromFirebaseToDevitObject = doc => {
+    const data = doc.data()
+    const id = doc.id
+    const {createdAt} = data
                 
-                return {
-                    ...data,
-                    id,
-                    createdAt: +createdAt.toDate(),
-                }
-            })
+    return {
+        ...data,
+        id,
+        createdAt: +createdAt.toDate(),
+    }
+}
+
+export const listenLatestDevits = (callback) => {
+    return db.collection('dev-tweets')
+        .orderBy("createdAt", "desc")
+        .limit(20)
+        .onSnapshot(({docs}) => {
+            const newDevits = docs.map(mapDevitFromFirebaseToDevitObject)
+            callback(newDevits)
         })
 }
 
