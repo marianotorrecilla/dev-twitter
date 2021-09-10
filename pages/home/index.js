@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from 'next/link'
 import Devit from "components/Devit";
 import useUser from "hooks/useUser";
-import { fetchLatestDevits } from "firebase/client";
+import { listenLatestDevits } from "firebase/client";
 import CreateIcon from "components/Icons/Create";
 import HomeIcon from "components/Icons/HomeIcon";
 import Search from "components/Icons/Search";
@@ -14,7 +14,11 @@ export default function HomePage () {
     const user = useUser()
 
     useEffect(() => {
-        user && fetchLatestDevits().then(setTimeline)
+        let unsuscribe
+        if (user) {
+            unsuscribe = listenLatestDevits(setTimeline)
+        }
+        return () => unsuscribe && unsuscribe()
     }, [user])
 
     return (
