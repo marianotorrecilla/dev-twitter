@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import Head from "next/head";
+import Link from 'next/link'
+import Avatar from 'components/Avatar';
 import Button from 'components/Button';
+import CreateIcon from "components/Icons/Create";
+import HomeIcon from "components/Icons/HomeIcon";
+import Search from "components/Icons/Search";
 import useUser from 'hooks/useUser';
 import { addDevit, upLoadImage } from "firebase/client"
 import { useRouter } from 'next/router';
-import Avatar from 'components/Avatar';
+import { colors } from "styles/theme";
 
 const COMPOSE_STATES = {
     USER_NOT_KNOWN: 0,
@@ -119,6 +124,11 @@ export default function ComposeTweet () {
                         )}
                         <div>
                             <Button disabled={isButtonDisabled}>Dev-Tweet</Button>
+                            <Link href="/home">
+                                <a>
+                                    <HomeIcon stroke="#000" width={32} height={32}/>
+                                </a>
+                            </Link>
                         </div>
                     </form>
                 </section>
@@ -126,6 +136,7 @@ export default function ComposeTweet () {
             <style jsx>{`
                 div {
                     padding: 15px;
+                    display: flex;
                 }
 
                 button {
@@ -154,10 +165,12 @@ export default function ComposeTweet () {
 
                 .remove-img {
                     position: relative;
+                    margin-top: 8px;
                 }
 
                 form {
                     padding: 10px;
+                    width: 100%;
                 }
 
                 img {
@@ -167,8 +180,10 @@ export default function ComposeTweet () {
                 }
 
                 textarea {
-                    border: ${drag === DRAG_IMAGE_STATES.DRAG_OVER ? '3px dashed #09f' : '3px solid transparent'};
+                    background: ${colors.primary}; 
+                    border: ${drag === DRAG_IMAGE_STATES.DRAG_OVER ? '3px dashed #28e269' : '3px solid transparent'};
                     border-radius: 10px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
                     padding: 15px;
                     resize: none;
                     font-size: 21px;
@@ -176,6 +191,26 @@ export default function ComposeTweet () {
                     outline: 0;
                     width: 100%;
                 }
+
+                a {
+                    align-items: center;
+                    display: flex;
+                    flex: 1 1 auto;
+                    height: 100%;
+                    justify-content: center;
+                    padding: 8px;
+                }
+
+                a:hover {
+                    background: radial-gradient(#28e269 15%, transparent 15%);
+                    background-size: 180px 180px;
+                    background-position: center;
+                }
+
+                a:hover > :global(svg) {
+                    stroke: ${colors.black}
+                }
+
             `}</style>
         </>
     )
