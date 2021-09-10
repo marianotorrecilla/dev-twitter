@@ -5,6 +5,7 @@ export default css`
     button {
         align-items: center;
         background: ${colors.black};
+        box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
         color: ${colors.white};
         cursor: pointer;
         border: 2px solid ${colors.black};

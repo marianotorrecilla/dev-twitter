@@ -5,6 +5,7 @@
 
 .avatar {
     border-radius: 9999px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
     height: 49px;
     width: 49px;
 }

@@ -2,7 +2,7 @@ import css from 'styled-jsx/css'
 import { breakpoints, colors, fonts } from "styles/theme"
 import { addOpacityToColor } from "styles/utils"
 
-const backgroundColor = addOpacityToColor(colors.primary, 0.3)
+const backgroundColor = addOpacityToColor(colors.black, 0.1)
 
 export default css`
     div {
@@ -12,9 +12,9 @@ export default css`
     }
 
     main {
-        background: #fff;
+        background: ${colors.primary};
         border-radius: 10px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -34,6 +34,7 @@ export default css`
 export const globalStyles = css.global`
     html,
     body {
+        background: ${colors.primary};
         background-image: 
             radial-gradient(${backgroundColor} 1px, transparent 1px), 
             radial-gradient(${backgroundColor} 1px, transparent 1px);

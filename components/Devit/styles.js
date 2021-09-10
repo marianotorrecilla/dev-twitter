@@ -2,13 +2,13 @@ import css from 'styled-jsx/css'
 
 export default css`
     article {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #000000aa;
         display: flex;
         padding: 10px 15px;
     }
 
     article:hover {
-        background: #f5f8fa;
+        background: #d1b6e6;
         cursor: pointer;
     }
 
