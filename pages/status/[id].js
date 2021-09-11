@@ -33,26 +33,26 @@ export default function DevitPage(props) {
             <nav>
                 <Link href="/home">
                     <a>
-                        <HomeIcon stroke="#09f" width={32} height={32}/>
+                        <HomeIcon stroke="#000" width={32} height={32}/>
                     </a>
                 </Link>
                 <Link href="/search">
                     <a>
-                        <Search stroke="#09f" width={32} height={32}/>
+                        <Search stroke="#000" width={32} height={32}/>
                     </a>
                 </Link>
                 <Link href="/compose/tweet">
                     <a>
-                        <CreateIcon stroke="#09f" width={32} height={32}/>
+                        <CreateIcon stroke="#000" width={32} height={32}/>
                     </a>
                 </Link>
             </nav>
             <style jsx>{`
                 header {
                     align-items: center;
-                    background: #ffffffaa;
+                    background: rgba(180, 155, 200, 0.9);
                     backdrop-filter: blur(5px);
-                    border-bottom: 1px solid #eee;
+                    border-bottom: 1px solid #28e269;
                     display: flex;
                     height: 49px;
                     position: sticky;
@@ -71,7 +71,8 @@ export default function DevitPage(props) {
                 }
 
                 nav {
-                    background: #ffffff;
+                    background: ${colors.primary};
+                    border-top: 1px solid #28e269;
                     bottom: 0;
                     display: flex;
                     height: 49px;
@@ -88,13 +89,13 @@ export default function DevitPage(props) {
                 }
 
                 nav a:hover {
-                    background: radial-gradient(#0099ff44 15%, transparent 15%);
+                    background: radial-gradient(#28e269 15%, transparent 15%);
                     background-size: 180px 180px;
                     background-position: center;
                 }
 
                 nav a:hover > :global(svg) {
-                    stroke: ${colors.primary}
+                    stroke: ${colors.black}
                 }
             `}</style>
         </>
