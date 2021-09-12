@@ -91,14 +91,3 @@ export default function Home() {
     </div>
   );
 }
-
-/**
- * && user.avatar && <div>
-                <Avatar 
-                  src={user.avatar} 
-                  alt={user.username} 
-                  text={user.username}
-                  withText
-                />
-              </div>
- */

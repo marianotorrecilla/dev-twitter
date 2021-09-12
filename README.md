@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dev-Twitter - NextJS App
 
-## Getting Started
+Dev-Twitter is a mini "twitter" for developers. All "dev-tweets" and logins are done thanks to the connection to a firebase database created for this project. To log in, use the GitHub account. Once logged in, it automatically redirects you to the home where you can see all the existing dev-tweets. You can create a new dev-tweet with text and you can also attach files to them. The new dev-tweet is displayed in real time on multiple screens.
 
-First, run the development server:
+## Dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-```
++ "firebase"
++ "firebase-admin"
++ "vercel": to deploy with a CLI
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Hooks
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
++ useState
++ useEffect
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Custom Hooks
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
++ useUser to auth user login 
++ useTimeAgo to set timeago for tweets
++ useDateTimeFormat to set DateTimeFormat
 
-## Learn More
+## Other Next implementations
 
-To learn more about Next.js, take a look at the following resources:
++ useRouter
++ next/link
++ next/head
++ _app.js with AppLayout Component
++ getStaticPaths and getStaticProps to data fetching singular tweets
++ commented examples of getServerSideProps and getInitialProps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Data Base
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+All data is stored in firebase.
 
-## Deploy on Vercel
+## API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project has an api to view a particular dev-tweet. This api takes the data directly from firebase. ITS implementation is possible thanks to NextJS features.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Available Scripts
+
+In the project directory, you can run:
+
+### `yarn run dev`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Deployment
+
+This project has a vercel deploy. You can see it: [https://dev-twitter-lcwvj65m2-marianotorrecilla.vercel.app/](https://dev-twitter-lcwvj65m2-marianotorrecilla.vercel.app/)
+
+
+## Special thanks
+
+I have carried out this project thanks to the contribution and learning given by midudev in his free NextJS live coding course. I was taking concepts, methods and good practices to develop step by step. Therefore, my special thanks to midudev [https://www.youtube.com/c/midudev](https://www.youtube.com/c/midudev)
+
