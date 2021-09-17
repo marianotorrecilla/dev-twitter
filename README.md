@@ -19,7 +19,7 @@ Dev-Twitter is a mini "twitter" for developers. All "dev-tweets" and logins are 
 + useTimeAgo to set timeago for tweets
 + useDateTimeFormat to set DateTimeFormat
 
-## Other Next implementations
+## Other NextJS implementations
 
 + useRouter
 + next/link
