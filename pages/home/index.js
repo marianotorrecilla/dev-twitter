@@ -4,10 +4,13 @@ import Link from 'next/link'
 import Devit from "components/Devit";
 import useUser from "hooks/useUser";
 import { listenLatestDevits } from "firebase/client";
+import { logoutWithGitHub } from 'firebase/client'
 import CreateIcon from "components/Icons/Create";
 import HomeIcon from "components/Icons/HomeIcon";
 import Search from "components/Icons/Search";
 import { colors } from "styles/theme";
+import Button from "components/Button";
+import OutIcon from "components/Icons/Out";
 
 export default function HomePage () {
     const [timeline, setTimeline] = useState([])
@@ -21,6 +24,12 @@ export default function HomePage () {
         return () => unsuscribe && unsuscribe()
     }, [user])
 
+    const handleClick = () => {
+        logoutWithGitHub().catch(err => {
+            console.log(err);
+        })
+    }
+
     return (
         <>
                 <Head>
@@ -28,6 +37,13 @@ export default function HomePage () {
                 </Head>
                 <header>
                     <h2>Inicio</h2>
+                    <Link href="/">
+                        <a>
+                            <Button onClick={handleClick}>
+                                <OutIcon width={18} height={18}/>
+                            </Button>
+                        </a>
+                    </Link>
                 </header>
                 <section>
                     {timeline.map(({ id, userName, avatar, content, img, userId, createdAt }) => {
@@ -74,6 +90,16 @@ export default function HomePage () {
                     position: sticky;
                     top: 0;
                     width: 100%;
+                }
+
+                header a {
+                    align-items: flex-end;
+                    display: flex;
+                    flex: 1 1 auto;
+                    height: 100%;
+                    justify-content: flex-end;
+                    margin: 1rem;
+                    padding-bottom: 2px;
                 }
 
                 section {
