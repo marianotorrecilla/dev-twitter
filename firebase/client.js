@@ -28,6 +28,10 @@ export const loginWithGitHub = () => {
     return firebase.auth().signInWithPopup(githubProvider)
 }
 
+export const logoutWithGitHub = () => {
+    return firebase.auth().signOut()
+}
+
 export const addDevit = ({avatar, content, img, userId, userName}) => {
     return db.collection('dev-tweets').add({
         avatar,
