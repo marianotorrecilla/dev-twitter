@@ -47,7 +47,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Deployment
 
-This project has a vercel deploy. You can see it: [https://dev-twitter-lcwvj65m2-marianotorrecilla.vercel.app/](https://dev-twitter-lcwvj65m2-marianotorrecilla.vercel.app/)
+This project has a vercel deploy. You can see it: [https://dev-twitter-zs2gt8nyz-marianotorrecilla.vercel.app/](https://dev-twitter-zs2gt8nyz-marianotorrecilla.vercel.app/)
 
 
 ## Special thanks
